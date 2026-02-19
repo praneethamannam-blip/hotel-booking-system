@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel Booking System</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="main-page"> 
+
+  <header>
+    <h3>Welcome to Dream Hotel</h3>
+    <a href="login.html">Login</a>
+  </header>
+
+  <section id="search-filter">
+    <form id="bookingForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="date" name="checkin" required />
+      <input type="date" name="checkout" required />
+      <input type="number" name="guests" placeholder="Guests" required />
+      
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <script>
+    const bookingForm = document.getElementById("bookingForm");
+
+    bookingForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(bookingForm);
+      const booking = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        checkin: formData.get("checkin"),
+        checkout: formData.get("checkout"),
+        guests: formData.get("guests"),
+        roomType: formData.get("roomType")
+      };
+
+      // Redirect to rooms.html with booking info
+      const query = new URLSearchParams(booking).toString();
+      window.location.href = `rooms.html?${query}`;
+    });
+  </script>
+</body>
+</html>
